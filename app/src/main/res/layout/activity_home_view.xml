@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_main_theme_gradient"
+    android:fitsSystemWindows="true"
     tools:context="com.scibots.aniket.mtickets.Home_view">
 
-    <com.arlib.floatingsearchview.FloatingSearchView
-        android:id="@+id/floating_search_view"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_transparent"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/status_padding">
+
+        <TextView
+            android:id="@+id/genreTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
-        app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
-        app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
-        app:floatingSearch_searchHint="Search..."
-        app:floatingSearch_suggestionsListAnimDuration="250"
-        app:floatingSearch_showSearchKey="false"
-        app:floatingSearch_leftActionMode="showHamburger"
-        app:floatingSearch_menu="@menu/menu_main"
-        app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Fiction"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_title" />
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -31,11 +31,12 @@ class Home_view : AppCompatActivity() {
     private var mRecylerview: RecyclerView? = null
     private var mLayoutManager: RecyclerView.LayoutManager? = null
     private var mAdapter: RecyclerView.Adapter<*>? = null
+    private var MovieList: ArrayList<Movie>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_view)
-
+        MovieList = ArrayList<Movie>();
         // for making status bar completly transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val w = window // in Activity's onCreate() for instance
@@ -57,8 +58,10 @@ class Home_view : AppCompatActivity() {
 
         //setting adapter
 
-        mAdapter = GenreboxAdapter(this, ArrayList<Movie>())
+        mAdapter = GenreboxAdapter(this, MovieList)
         mRecylerview?.adapter = mAdapter
+
+
 
 
         titleTextview = findViewById(R.id.genreTitle) as TextView
@@ -73,20 +76,7 @@ class Home_view : AppCompatActivity() {
         moviesNames.add("aniket");
         moviesNames.add("lol");
 
-        // search view
-        mSearchView = findViewById(R.id.floating_search_view) as FloatingSearchView
-        mSearchView?.setOnQueryChangeListener(FloatingSearchView.OnQueryChangeListener { oldQuery, newQuery ->
 
-            var mlist: ArrayList<movieSuggestion> = ArrayList();
-
-            for (i in 0..moviesNames.size - 1) {
-                if (moviesNames.get(i).contains(newQuery, true)) {
-                    mlist.add(movieSuggestion(moviesNames.get(i)))
-                }
-            }
-
-            mSearchView?.swapSuggestions(mlist)
-        })
 
 
     }
@@ -116,7 +106,7 @@ class Home_view : AppCompatActivity() {
 
     private fun parsemovies(response: JSONObject?): ArrayList<Movie>? {
 
-        var m: ArrayList<Movie>? = null
+
 
         try {
 
@@ -129,23 +119,47 @@ class Home_view : AppCompatActivity() {
 
                 val movie = movies.getJSONObject(i)
 
-
-
-                m?.add(Movie(movie.getInt("id"),
-                        movie.getString("poster_path"),
+                MovieList?.add(Movie(movie.getInt("id"),
+                        movie.getString("original_title"),
                         movie.getString("overview"),
                         movie.getString("backdrop_path"),
                         movie.getString("release_date"),
                         movie.getString("vote_average")
                 ));
+                Log.d(TAG, "done" + MovieList?.size);
+
+
+                // search view
+                mSearchView = findViewById(R.id.floating_search_view) as FloatingSearchView
+                mSearchView?.setOnQueryChangeListener(FloatingSearchView.OnQueryChangeListener { oldQuery, newQuery ->
+
+                    var mlist: ArrayList<movieSuggestion> = ArrayList();
+
+                    for (i in 0..MovieList?.size!! - 1) {
+
+                        var movie: Movie = MovieList?.get(i)!!
+
+                        if (movie.original_title.contains(newQuery, true)) {
+                            mlist.add(movieSuggestion(movie.original_title))
+                        }
+                    }
+
+                    mSearchView?.swapSuggestions(mlist)
+                })
+
 
 
             }
+
+
+
+
+            mAdapter?.notifyDataSetChanged()
 
         } catch (e: JSONException) {
 
         }
 
-        return m
+        return MovieList
     }
 }

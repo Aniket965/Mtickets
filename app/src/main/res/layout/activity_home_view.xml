@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/status_padding"
+        android:elevation="@dimen/status_padding"
         app:floatingSearch_close_search_on_keyboard_dismiss="true"
         app:floatingSearch_leftActionMode="showHamburger"
         app:floatingSearch_menu="@menu/menu_main"
@@ -52,51 +53,6 @@
             android:layout_below="@+id/featured">
 
         </android.support.v7.widget.RecyclerView>
-        <!--<TextView-->
-
-        <!--android:id="@+id/latest"-->
-        <!--android:layout_below="@+id/movieScroll"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Recent"-->
-        <!--android:textStyle="bold"-->
-        <!--android:layout_marginLeft="@dimen/font_size_title"-->
-        <!--android:textSize="56sp"-->
-        <!--android:textColor="#10FFFFFF" />-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_marginRight="@dimen/font_size_title"-->
-        <!--android:layout_marginLeft="@dimen/font_size_title"-->
-        <!--android:layout_below="@+id/latest"-->
-        <!--android:elevation="20dp"-->
-        <!--android:background="#20000000"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="150dp">-->
-        <!--<ImageView-->
-        <!--android:background="@mipmap/ic_launcher"-->
-        <!--android:layout_width="110dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/imageView" />-->
-        <!--<TextView-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textStyle="bold"-->
-        <!--android:text="Avengers"-->
-        <!--android:id="@+id/moviename"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_toEndOf="@+id/imageView"-->
-        <!--android:layout_marginStart="55dp" />-->
-        <!--<TextView-->
-        <!--android:layout_below="@id/moviename"-->
-        <!---->
-        <!--android:layout_toEndOf="@+id/imageView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="In the near future, a weary Logan (Hugh Jackman) cares for an ailing Professorr …"-->
-        <!--android:textColor="#90ffffff"/>-->
-
-        <!--</RelativeLayout>-->
 
 
     </RelativeLayout>

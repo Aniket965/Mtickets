@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="210dp"
+    android:layout_width="196dp"
     android:layout_height="300dp"
     android:layout_margin="10dp"
     android:background="@drawable/transparent_card_view">
@@ -8,8 +8,7 @@
     <ImageView
         android:id="@+id/poster"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@drawable/asd" />
+        android:layout_height="110dp" />
 
     <TextView
         android:id="@+id/movieTitle"
@@ -23,7 +22,6 @@
         android:text="Pirates of the Caribbean: Dead Men Tell No Tales"
         android:textAlignment="center"
         android:textColor="@color/white"
-
         android:textSize="18dp" />
 
     <TextView

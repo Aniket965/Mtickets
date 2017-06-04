@@ -7,12 +7,20 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.WindowManager
 import android.widget.TextView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
 import com.arlib.floatingsearchview.FloatingSearchView
+import com.scibots.aniket.mtickets.Que.MySingleton
 import com.scibots.aniket.mtickets.SearchSuggestion.movieSuggestion
 import com.scibots.aniket.mtickets.adapters.GenreboxAdapter
 import com.scibots.aniket.mtickets.dataclass.Movie
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class Home_view : AppCompatActivity() {
@@ -33,6 +41,7 @@ class Home_view : AppCompatActivity() {
             val w = window // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
+        getmoviesfromgenre(14);
 
         // Recyler view
 
@@ -80,7 +89,63 @@ class Home_view : AppCompatActivity() {
         })
 
 
+    }
 
 
+    private fun getmoviesfromgenre(id: Int?): ArrayList<Movie>? {
+        var dataset = ArrayList<Movie>()
+
+
+        val url = "https://api.themoviedb.org/3/genre/$id/movies?api_key=f42a418b0aba174156496701672bebf7&language=en-US&include_adult=false&sort_by=created_at.asc"
+        var jsonRequest = JsonObjectRequest(Request.Method.GET, url, null,
+                object : Response.Listener<JSONObject> {
+                    override fun onResponse(p0: JSONObject?) {
+                        parsemovies(p0)
+
+                    }
+
+                }, object : Response.ErrorListener {
+            override fun onErrorResponse(error: VolleyError) {
+
+                Log.e("HOMESCREEN", "genre Request didnot work! ")
+            }
+        })
+        MySingleton.getInstance(this).addToRequestQueue(jsonRequest)
+        return dataset
+    }
+
+    private fun parsemovies(response: JSONObject?): ArrayList<Movie>? {
+
+        var m: ArrayList<Movie>? = null
+
+        try {
+
+            // Getting JSON Array node
+            val movies = response!!.getJSONArray("results")
+
+
+            // looping through All Contacts
+            for (i in 0..movies.length() - 1) {
+
+                val movie = movies.getJSONObject(i)
+
+
+
+                m?.add(Movie(movie.getInt("id"),
+                        movie.getString("poster_path"),
+                        movie.getString("overview"),
+                        movie.getString("backdrop_path"),
+                        movie.getString("release_date"),
+                        movie.getString("vote_average")
+                ));
+
+
+            }
+
+        } catch (e: JSONException) {
+
+        }
+
+        return m
     }
 }

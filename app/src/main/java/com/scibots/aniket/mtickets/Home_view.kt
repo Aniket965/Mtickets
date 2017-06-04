@@ -98,6 +98,7 @@ class Home_view : AppCompatActivity() {
 
         var intent: Intent = Intent(this, GenreSelector::class.java)
         startActivity(intent)
+        finish()
 
     }
 

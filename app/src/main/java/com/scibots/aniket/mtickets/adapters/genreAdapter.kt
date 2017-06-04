@@ -1,5 +1,6 @@
 package com.scibots.aniket.mtickets.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -42,6 +43,7 @@ class genreAdapter(internal var context: Context, genreDataset: ArrayList<HashMa
                     b.putString("genreName", genredataset.get(i).get(key))
                     intent.putExtras(b)
                     context.startActivity(intent)
+                    (context as Activity).finish()
 
                 }
             })

@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GenreSelector"></activity>
+        <activity android:name=".GenreSelector" />
+        <activity android:name=".Detail_screen"></activity>
     </application>
 
 </manifest>

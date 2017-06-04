@@ -13,6 +13,7 @@ public class Movie {
     String vote_average;
 
     public Movie(int id, String original_title, String overview, String backdrop_path, String release_date, String vote_average) {
+
         this.id = id;
         this.original_title = original_title;
         this.overview = overview;

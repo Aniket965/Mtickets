@@ -43,7 +43,7 @@ class Home_view : AppCompatActivity() {
 
 
         //setting Layout Manager
-        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         mRecylerview?.layoutManager = mLayoutManager
 
         //setting adapter
@@ -55,7 +55,7 @@ class Home_view : AppCompatActivity() {
         titleTextview = findViewById(R.id.genreTitle) as TextView
 
         //setting font for the title text
-        val custom_font = Typeface.createFromAsset(assets, "font/VastShadow-Regular.ttf")
+        val custom_font = Typeface.createFromAsset(assets, "font/OpenSans-CondBold.ttf")
         titleTextview?.typeface = custom_font
 
         // fake data set now

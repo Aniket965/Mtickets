@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
+    android:layout_width="210dp"
     android:layout_height="300dp"
-    android:layout_margin="10dp">
-
+    android:layout_margin="10dp"
+    android:background="@drawable/transparent_card_view">
 
     <ImageView
         android:id="@+id/poster"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="130dp"
+        android:background="@drawable/asd" />
+
+    <TextView
+        android:id="@+id/movieTitle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/poster"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="8dp"
+        android:text="Pirates of the Caribbean: Dead Men Tell No Tales"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/disp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
+        android:layout_below="@+id/movieTitle"
+        android:layout_marginLeft="@dimen/status_padding"
+        android:layout_marginRight="@dimen/status_padding"
+        android:layout_marginTop="8dp"
+        android:text="Captain Jack Sparrow is pursued by an old rival, Captain Salazar, who along with his crew of ghost pirates has escaped from the Devil's Triangle, and is determined to kill every pirate at sea. Jack seeks the Trident of Poseidon, a powerful artifact that grants its possessor total control over the seas, in order to defeat Salazar."
+        android:textAlignment="center"
+        android:textColor="#80ffffff"
+        android:textSize="10sp"
+        android:textStyle="bold"
+
+
+        />
+
+    <TextView
+        android:id="@+id/book_button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/status_padding"
+
+        android:background="@drawable/custom_book_button"
+        android:padding="5dp"
+        android:text="Book"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

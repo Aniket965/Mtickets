@@ -43,21 +43,27 @@ class Home_view : AppCompatActivity() {
         var b = intent.extras
         //id for action
         var id: Int? = 28
-        var name = "Action"
+        var name: String? = "Action"
         if (b != null) {
-
             id = b.getInt("genreId")
             name = b.getString("genreName")
         }
+
         genreTextview = findViewById(R.id.genreTitle) as TextView
-        genreTextview?.setText(name)
+
+        if (name != null) {
+            genreTextview?.setText(name)
+        } else {
+            genreTextview?.setText("Action")
+        }
         MovieList = ArrayList<Movie>();
         // for making status bar completly transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val w = window // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
-        if (id != null) {
+        if (id != 0) {
+
             getmoviesfromgenre(id);
         } else {
             getmoviesfromgenre(28);

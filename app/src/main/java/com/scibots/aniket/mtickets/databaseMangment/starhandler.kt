@@ -41,14 +41,16 @@ class starhandler(context: Context, name: String?, factory: SQLiteDatabase.Curso
 
     fun isMovieLiked(Name: String): Boolean {
         val db = this.readableDatabase
-        val Query = "Select * from $TABLE_NAME where $COLOUMN_Movie_TITLE_liked"
+        val Query = "Select * from $TABLE_NAME where $COLOUMN_Movie_TITLE_liked=$Name"
         val cursor = db.rawQuery(Query, null)
         if (cursor.count <= 0) {
             cursor.close()
             return false
         }
-        cursor.close()
-        return true
+        else{
+            cursor.close()
+            return true
+        }
     }
 
     companion object {

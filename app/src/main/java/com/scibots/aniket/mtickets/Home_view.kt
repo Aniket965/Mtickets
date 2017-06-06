@@ -19,6 +19,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.arlib.floatingsearchview.FloatingSearchView
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 import com.scibots.aniket.mtickets.Que.MySingleton
 import com.scibots.aniket.mtickets.SearchSuggestion.movieSuggestion
 import com.scibots.aniket.mtickets.adapters.GenreboxAdapter
@@ -182,6 +183,25 @@ class Home_view : AppCompatActivity() {
                         if (movie.original_title.contains(newQuery, true)) {
                             mlist.add(movieSuggestion(movie.original_title))
                         }
+                        /*
+                        * Opens movie details view if query happend
+                        * */
+                        if (movie.original_title.equals(newQuery)) {
+                            var intent: Intent = Intent(this, Detail_screen::class.java)
+                            var b = Bundle()
+                            b.putInt("movieId", movie.id)
+                            b.putString("moviename", movie.original_title)
+                            b.putString("moviebackurl", movie.backdrop_path)
+                            b.putString("movieOverview", movie.overview)
+                            b.putString("moviedate", movie.release_date)
+                            b.putString("movievotes", movie.vote_average)
+                            b.putString("lang", movie.language)
+                            b.putString("poster_url", movie.poster_url)
+                            intent.putExtras(b)
+                            this.startActivity(intent)
+
+                        }
+
                     }
 
                     mSearchView?.swapSuggestions(mlist)
@@ -189,7 +209,28 @@ class Home_view : AppCompatActivity() {
 
 
 
+
             }
+            mSearchView?.setOnSearchListener(object : FloatingSearchView.OnSearchListener {
+                override fun onSearchAction(currentQuery: String?) {
+
+                }
+
+                override fun onSuggestionClicked(searchSuggestion: SearchSuggestion) {
+                    for (i in 0..MovieList?.size!! - 1) {
+                        val movie: Movie = MovieList?.get(i)!!
+
+                        if (movie.original_title.equals(searchSuggestion.body)) {
+
+                            opendetailPage(movie)
+                        }
+
+                    }
+                }
+            })
+
+
+
 
             mRecylerview?.setVisibility(View.VISIBLE);
             emptyView?.setVisibility(View.GONE);
@@ -200,6 +241,21 @@ class Home_view : AppCompatActivity() {
         }
 
         return MovieList
+    }
+
+    private fun opendetailPage(movie: Movie) {
+        var intent: Intent = Intent(this, Detail_screen::class.java)
+        var b = Bundle()
+        b.putInt("movieId", movie.id)
+        b.putString("moviename", movie.original_title)
+        b.putString("moviebackurl", movie.backdrop_path)
+        b.putString("movieOverview", movie.overview)
+        b.putString("moviedate", movie.release_date)
+        b.putString("movievotes", movie.vote_average)
+        b.putString("lang", movie.language)
+        b.putString("poster_url", movie.poster_url)
+        intent.putExtras(b)
+        this.startActivity(intent)
     }
 
     override fun onBackPressed() {

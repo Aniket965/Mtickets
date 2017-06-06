@@ -6,11 +6,13 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.scibots.aniket.mtickets.Detail_screen
 import com.scibots.aniket.mtickets.Home_view
 import com.scibots.aniket.mtickets.R
 import com.scibots.aniket.mtickets.dataclass.Movie
@@ -30,18 +32,16 @@ class GenreboxAdapter(internal var context: Context, Moviesdataset: ArrayList<Mo
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        var url: String
-
-        if (Moviesdataset!!.size > 0) {
+            var url: String
             var movie: Movie = Moviesdataset?.get(i)!!
             url = movie.backdrop_path
             viewHolder.mTitle.setText(movie.original_title)
             viewHolder.mdisp.setText(movie.overview)
             viewHolder.setImage(url);
-            viewHolder.mButText.setOnClickListener {
-                object : View.OnClickListener {
-                    override fun onClick(view: View): Unit {
-                        var intent: Intent = Intent(context, Home_view::class.java)
+
+        viewHolder.mButText.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View): Unit {
+                        var intent: Intent = Intent(context, Detail_screen::class.java)
                         var b = Bundle()
                         b.putInt("movieId", movie.id)
                         b.putString("moviename", movie.original_title)
@@ -52,10 +52,9 @@ class GenreboxAdapter(internal var context: Context, Moviesdataset: ArrayList<Mo
                         intent.putExtras(b)
                         context.startActivity(intent)
                         (context as Activity).finish()
-                    }
-                }
+
             }
-        }
+        })
 
     }
 
@@ -78,14 +77,13 @@ class GenreboxAdapter(internal var context: Context, Moviesdataset: ArrayList<Mo
         var mTitle: TextView
         var mdisp: TextView
         var img: ImageView
-        var mButText: TextView
+        var mButText: TextView = itemView.findViewById(R.id.book_button) as TextView
 
 
         init {
             mTitle = itemView.findViewById(R.id.movieTitle) as TextView
             img = itemView.findViewById(R.id.poster) as ImageView
             mdisp = itemView.findViewById(R.id.disp) as TextView
-            mButText = itemView.findViewById(R.id.book_button) as TextView
 
             val custom_font_title = Typeface.createFromAsset(context.assets, "font/OpenSans-CondBold.ttf")
             val custom_font_disp = Typeface.createFromAsset(context.assets, "font/Lora-Italic.ttf")

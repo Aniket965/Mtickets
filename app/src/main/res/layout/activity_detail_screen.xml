@@ -49,6 +49,7 @@
         android:backgroundTint="@android:color/holo_red_light"
         android:elevation="@dimen/cardview_compat_inset_shadow"
         android:fontFamily="serif"
+        android:onClick="open_book_screen"
         android:text="Book"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="#fff"

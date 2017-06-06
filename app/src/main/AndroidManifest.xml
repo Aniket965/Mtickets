@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GenreSelector" />
-        <activity android:name=".Detail_screen"></activity>
+        <activity android:name=".Detail_screen" />
+        <activity android:name=".BookScreen"></activity>
     </application>
 
 </manifest>

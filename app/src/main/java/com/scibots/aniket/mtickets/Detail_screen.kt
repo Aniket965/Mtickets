@@ -1,9 +1,12 @@
 package com.scibots.aniket.mtickets
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
@@ -71,6 +74,17 @@ class Detail_screen : AppCompatActivity() {
 
 
         book = findViewById(R.id.dbookbut) as Button
+
+
+    }
+
+    public fun open_book_screen(view:View){
+        var intent: Intent = Intent(this, BookScreen::class.java)
+        var b = Bundle()
+
+        b.putString("url", url_back)
+        intent.putExtras(b)
+        this.startActivity(intent)
 
 
     }

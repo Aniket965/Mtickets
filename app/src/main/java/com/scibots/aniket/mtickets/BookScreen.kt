@@ -1,21 +1,16 @@
 package com.scibots.aniket.mtickets
 
-import android.graphics.Color
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.constraint.ConstraintLayout
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import com.squareup.picasso.Picasso
 import com.afollestad.materialdialogs.MaterialDialog
-import com.basgeekball.awesomevalidation.helper.SpanHelper.setColor
-import com.basgeekball.awesomevalidation.AwesomeValidation
-import com.basgeekball.awesomevalidation.ValidationStyle
-import com.basgeekball.awesomevalidation.utility.RegexTemplate
+import com.squareup.picasso.Picasso
 
 
 class BookScreen : AppCompatActivity() {
@@ -26,6 +21,7 @@ class BookScreen : AppCompatActivity() {
     var email: EditText? = null
     var address: EditText? = null
     var quantity: EditText? = null
+    var cl: ConstraintLayout? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +40,7 @@ class BookScreen : AppCompatActivity() {
 
         }
         poster = findViewById(R.id.poster) as ImageView
+        cl = findViewById(R.id.bookLayout) as ConstraintLayout
         Picasso.with(this).load("https://image.tmdb.org/t/p/w342/" + poster_url).into(poster)
         /*
         * Intializing edit texts
@@ -97,6 +94,10 @@ class BookScreen : AppCompatActivity() {
 
     fun isValidAddress(target: CharSequence?): Boolean {
         return target != null
+    }
+
+    fun goBack(view: View) {
+        super.onBackPressed();
     }
 
 

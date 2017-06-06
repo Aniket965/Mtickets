@@ -102,5 +102,10 @@ class GenreSelector : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed();
+        return
+    }
+
 
 }

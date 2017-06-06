@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -35,6 +37,8 @@ class Home_view : AppCompatActivity() {
     private var mLayoutManager: RecyclerView.LayoutManager? = null
     private var mAdapter: RecyclerView.Adapter<*>? = null
     private var MovieList: ArrayList<Movie>? = null
+    var doubleBackToExitPressedOnce = false
+    var emptyView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +52,8 @@ class Home_view : AppCompatActivity() {
             id = b.getInt("genreId")
             name = b.getString("genreName")
         }
+
+        emptyView = findViewById(R.id.empty_view) as TextView
 
         genreTextview = findViewById(R.id.genreTitle) as TextView
 
@@ -73,6 +79,8 @@ class Home_view : AppCompatActivity() {
         // setting Recycler View
 
         mRecylerview = findViewById(R.id.movieScroll) as RecyclerView?
+
+
         mRecylerview?.setHasFixedSize(true)
 
 
@@ -84,6 +92,10 @@ class Home_view : AppCompatActivity() {
 
         mAdapter = GenreboxAdapter(this, MovieList)
         mRecylerview?.adapter = mAdapter
+        if (MovieList?.isEmpty()!!) {
+            mRecylerview?.setVisibility(View.GONE);
+            emptyView?.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -104,7 +116,6 @@ class Home_view : AppCompatActivity() {
 
         var intent: Intent = Intent(this, GenreSelector::class.java)
         startActivity(intent)
-        finish()
 
     }
 
@@ -180,9 +191,8 @@ class Home_view : AppCompatActivity() {
 
             }
 
-
-
-
+            mRecylerview?.setVisibility(View.VISIBLE);
+            emptyView?.setVisibility(View.GONE);
             mAdapter?.notifyDataSetChanged()
 
         } catch (e: JSONException) {
@@ -190,5 +200,17 @@ class Home_view : AppCompatActivity() {
         }
 
         return MovieList
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 }

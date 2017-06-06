@@ -5,4 +5,7 @@
     <string name="erremail">Please dont use characeters other than alphabets</string>
     <string name="erraddress">Please dont use characeters other than alphabets</string>
     <string name="defaultgenre">Action</string>
+    <string name="facebook_app_id">521307521593640</string>
+    <string name="fb_login_protocol_scheme">fb521307521593640</string>
+
 </resources>

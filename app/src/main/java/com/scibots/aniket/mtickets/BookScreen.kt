@@ -4,10 +4,12 @@ import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import com.afollestad.materialdialogs.MaterialDialog
 import com.basgeekball.awesomevalidation.helper.SpanHelper.setColor
@@ -20,11 +22,10 @@ class BookScreen : AppCompatActivity() {
     var name: String? = null
     var poster_url: String? = null
     var poster: ImageView? = null
-    var username:EditText?=null
-    var email:EditText?=null
-    var address:EditText?=null
-    var quantity:EditText?=null
-    val mAwesomeValidation = AwesomeValidation(ValidationStyle.UNDERLABEL)  
+    var username: EditText? = null
+    var email: EditText? = null
+    var address: EditText? = null
+    var quantity: EditText? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +44,7 @@ class BookScreen : AppCompatActivity() {
 
         }
         poster = findViewById(R.id.poster) as ImageView
-        Picasso.with(this).load("https://image.tmdb.org/t/p/w342/" +poster_url).into(poster)
+        Picasso.with(this).load("https://image.tmdb.org/t/p/w342/" + poster_url).into(poster)
         /*
         * Intializing edit texts
         * */
@@ -52,29 +53,51 @@ class BookScreen : AppCompatActivity() {
         address = findViewById(R.id.homeaddress) as EditText
         quantity = findViewById(R.id.quantity) as EditText
 
-        mAwesomeValidation.setContext(this)
-        mAwesomeValidation.addValidation(this,R.id.username, "[a-zA-Z\\s]+",R.string.errusername );
-        mAwesomeValidation.addValidation(this, R.id.email, android.util.Patterns.EMAIL_ADDRESS, R.string.erremail);
-
-
 
     }
 
-    public fun pay(view:View){
-        if(formValidated()){
+    public fun pay(view: View) {
+        if (formValidated()) {
             val dialog = MaterialDialog.Builder(this)
-                .title("Successfully booked")
-                .content("thanks for booking of the movie"+name)
-                .positiveText("ok")
-                .show()
+                    .title("Successfully booked")
+                    .content("thanks for booking of the movie" + name)
+                    .positiveText("ok")
+                    .show()
+        }
+        else{
+
+            Toast.makeText(this,"Please enter valid details",Toast.LENGTH_SHORT).show()
         }
     }
 
-     fun  formValidated(): Boolean{
-         mAwesomeValidation.validate();
+    fun formValidated(): Boolean {
+     return (isValidEmail(email?.text)&& isValidAddress(address?.text)&& isValidQunatity(quantity?.text)&& isValidUserName(username?.text))
+    }
 
-         return false
-     }
+    fun isValidEmail(target: CharSequence?): Boolean {
+        if (target == null) {
+            return false
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()
+        }
+    }
+
+    fun isValidUserName(target: CharSequence?): Boolean {
+        return target != null
+    }
+
+    fun isValidQunatity(target: CharSequence?): Boolean {
+        if (target == null||target.toString().contains("-")||(Integer.parseInt(target.toString())== 0)) {
+//            Log.d("LOL","valdation required")
+            return false
+        } else {
+            return true
+        }
+    }
+
+    fun isValidAddress(target: CharSequence?): Boolean {
+        return target != null
+    }
 
 
 }

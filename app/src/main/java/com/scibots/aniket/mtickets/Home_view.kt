@@ -54,7 +54,7 @@ class Home_view : AppCompatActivity() {
         if (name != null) {
             genreTextview?.setText(name)
         } else {
-            genreTextview?.setText("Action")
+            genreTextview?.setText(getString(R.string.defaultgenre))
         }
         MovieList = ArrayList<Movie>();
         // for making status bar completly transparent
@@ -114,7 +114,7 @@ class Home_view : AppCompatActivity() {
 
 
         val url = "https://api.themoviedb.org/3/genre/$id/movies?api_key=f42a418b0aba174156496701672bebf7&language=en-US&include_adult=false&sort_by=created_at.asc"
-        var jsonRequest = JsonObjectRequest(Request.Method.GET, url, null,
+        val jsonRequest = JsonObjectRequest(Request.Method.GET, url, null,
                 object : Response.Listener<JSONObject> {
                     override fun onResponse(p0: JSONObject?) {
                         parsemovies(p0)
@@ -162,11 +162,11 @@ class Home_view : AppCompatActivity() {
                 mSearchView = findViewById(R.id.floating_search_view) as FloatingSearchView
                 mSearchView?.setOnQueryChangeListener(FloatingSearchView.OnQueryChangeListener { oldQuery, newQuery ->
 
-                    var mlist: ArrayList<movieSuggestion> = ArrayList();
+                    val mlist: ArrayList<movieSuggestion> = ArrayList();
 
                     for (i in 0..MovieList?.size!! - 1) {
 
-                        var movie: Movie = MovieList?.get(i)!!
+                        val movie: Movie = MovieList?.get(i)!!
 
                         if (movie.original_title.contains(newQuery, true)) {
                             mlist.add(movieSuggestion(movie.original_title))

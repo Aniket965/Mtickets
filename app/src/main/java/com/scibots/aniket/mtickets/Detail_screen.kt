@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.scibots.aniket.mtickets.databaseMangment.starhandler
 import com.squareup.picasso.Picasso
 
 
@@ -27,7 +29,9 @@ class Detail_screen : AppCompatActivity() {
     var ddate:TextView? = null
     var dstarrate:TextView? = null
     var dlanguage:TextView? = null
+    var starred: ImageView? = null
     var book:Button? = null
+    var dataBaseHandler = starhandler(this, null, null, 2)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +55,18 @@ class Detail_screen : AppCompatActivity() {
             poster_url = b.getString("poster_url")
         }
 
+        /*
+        * if stared it will change into pink
+        * */
+        starred = findViewById(R.id.stared) as ImageView
+        if (dataBaseHandler.isMovieLiked(id.toString())) {
+            starred?.setImageResource(R.drawable.ic_favorite_pink)
+        }
+        Log.d(TAG, dataBaseHandler.isMovieLiked(id.toString()).toString())
+
+
+
+
         /**
          * loading background Image
          * */
@@ -72,7 +88,6 @@ class Detail_screen : AppCompatActivity() {
         dstarrate?.setText(average_votes)
         dlanguage?.setText(language)
 
-
         book = findViewById(R.id.dbookbut) as Button
 
 
@@ -85,11 +100,19 @@ class Detail_screen : AppCompatActivity() {
         b.putString("name",name)
         intent.putExtras(b)
         this.startActivity(intent)
-
-
     }
 
     fun goBack(view: View) {
         super.onBackPressed();
+    }
+
+    fun toggelLike(view: View) {
+        if (dataBaseHandler.isMovieLiked(id.toString())) {
+            dataBaseHandler.removeLike(id.toString())
+            starred?.setImageResource(R.drawable.ic_favorite_border_pink_24dp)
+        } else {
+            dataBaseHandler.addLikedMovie(id.toString())
+            starred?.setImageResource(R.drawable.ic_favorite_pink)
+        }
     }
 }

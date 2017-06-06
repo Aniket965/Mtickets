@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Mtickets</string>
     <string name="action_change_colors">action change colors</string>
+    <string name="errusername">Please dont use characeters other than alphabets</string>
+    <string name="erremail">Please dont use characeters other than alphabets</string>
+    <string name="erraddress">Please dont use characeters other than alphabets</string>
 </resources>

@@ -152,7 +152,8 @@ class Home_view : AppCompatActivity() {
                         movie.getString("backdrop_path"),
                         movie.getString("release_date"),
                         movie.getString("vote_average"),
-                        movie.getString("original_language")
+                        movie.getString("original_language"),
+                        movie.getString("poster_path")
                 ));
                 Log.d(TAG, "done" + MovieList?.size);
 

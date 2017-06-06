@@ -12,8 +12,11 @@ public class Movie {
     String release_date;
     String vote_average;
     String Language;
+    String poster_url;
 
-    public Movie(int id, String original_title, String overview, String backdrop_path, String release_date, String vote_average,String language) {
+    public Movie(int id, String original_title, String overview,
+                 String backdrop_path, String release_date, String vote_average,String language,
+                 String poster_url) {
         this.id = id;
         this.original_title = original_title;
         this.overview = overview;
@@ -21,10 +24,19 @@ public class Movie {
         this.release_date = release_date;
         this.vote_average = vote_average;
         this.Language = language;
+        this.poster_url = poster_url;
     }
 
     public String getLanguage() {
         return Language;
+    }
+
+    public String getPoster_url() {
+        return poster_url;
+    }
+
+    public void setPoster_url(String poster_url) {
+        this.poster_url = poster_url;
     }
 
     public void setLanguage(String language) {

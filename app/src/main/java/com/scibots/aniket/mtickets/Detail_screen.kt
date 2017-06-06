@@ -22,6 +22,7 @@ class Detail_screen : AppCompatActivity() {
     var average_votes: String? = null
     var release_date: String? = null
     var language:String? =null
+    var poster_url:String? =null
     val TAG = "Detailed View"
     var dtitle:TextView? = null
     var disp:TextView? = null
@@ -49,6 +50,7 @@ class Detail_screen : AppCompatActivity() {
             release_date = b.getString("moviedate")
             average_votes = b.getString("movievotes")
             language = b.getString("lang")
+            poster_url = b.getString("poster_url")
         }
 
         /**
@@ -81,8 +83,8 @@ class Detail_screen : AppCompatActivity() {
     public fun open_book_screen(view:View){
         var intent: Intent = Intent(this, BookScreen::class.java)
         var b = Bundle()
-
-        b.putString("url", url_back)
+        b.putString("url", poster_url)
+        b.putString("name",name)
         intent.putExtras(b)
         this.startActivity(intent)
 

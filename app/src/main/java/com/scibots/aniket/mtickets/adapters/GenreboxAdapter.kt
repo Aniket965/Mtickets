@@ -49,9 +49,10 @@ class GenreboxAdapter(internal var context: Context, Moviesdataset: ArrayList<Mo
                         b.putString("movieOverview", movie.overview)
                         b.putString("moviedate", movie.release_date)
                         b.putString("movievotes", movie.vote_average)
+                        b.putString("lang",movie.language)
                         intent.putExtras(b)
                         context.startActivity(intent)
-                        (context as Activity).finish()
+
 
             }
         })

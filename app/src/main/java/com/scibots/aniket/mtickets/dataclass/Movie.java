@@ -11,15 +11,24 @@ public class Movie {
     String backdrop_path;
     String release_date;
     String vote_average;
+    String Language;
 
-    public Movie(int id, String original_title, String overview, String backdrop_path, String release_date, String vote_average) {
-
+    public Movie(int id, String original_title, String overview, String backdrop_path, String release_date, String vote_average,String language) {
         this.id = id;
         this.original_title = original_title;
         this.overview = overview;
         this.backdrop_path = backdrop_path;
         this.release_date = release_date;
         this.vote_average = vote_average;
+        this.Language = language;
+    }
+
+    public String getLanguage() {
+        return Language;
+    }
+
+    public void setLanguage(String language) {
+        Language = language;
     }
 
     public int getId() {

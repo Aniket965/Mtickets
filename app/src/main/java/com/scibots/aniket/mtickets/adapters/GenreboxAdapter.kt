@@ -44,7 +44,7 @@ class GenreboxAdapter(internal var context: Context, Moviesdataset: ArrayList<Mo
                         var intent: Intent = Intent(context, Home_view::class.java)
                         var b = Bundle()
                         b.putInt("movieId", movie.id)
-                        b.putString("movieName", movie.original_title)
+                        b.putString("moviename", movie.original_title)
                         b.putString("moviebackurl", movie.backdrop_path)
                         b.putString("movieOverview", movie.overview)
                         b.putString("moviedate", movie.release_date)

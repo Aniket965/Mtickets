@@ -56,7 +56,7 @@ class Home_view : AppCompatActivity() {
 
         emptyView = findViewById(R.id.empty_view) as TextView
 
-        genreTextview = findViewById(R.id.genreTitle) as TextView
+
 
         if (name != null) {
             genreTextview?.setText(name)
@@ -98,10 +98,6 @@ class Home_view : AppCompatActivity() {
             emptyView?.setVisibility(View.VISIBLE);
         }
 
-
-
-
-        titleTextview = findViewById(R.id.genreTitle) as TextView
 
         //setting font for the title text
         val custom_font = Typeface.createFromAsset(assets, "font/OpenSans-CondBold.ttf")

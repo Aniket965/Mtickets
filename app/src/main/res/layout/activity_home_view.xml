@@ -13,6 +13,8 @@
         android:id="@+id/floating_search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/status_padding"
         android:elevation="@dimen/status_padding"
         app:floatingSearch_close_search_on_keyboard_dismiss="true"
@@ -25,8 +27,18 @@
         app:floatingSearch_showSearchKey="false"
         app:floatingSearch_suggestionsListAnimDuration="250">
 
-
     </com.arlib.floatingsearchview.FloatingSearchView>
+
+    <ImageView
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_arrow_drop_up_black_24dp"
+        android:onClick="open_genre_list"
+        android:text="" />
+
     <RelativeLayout
         android:id="@+id/main_box"
         android:layout_width="match_parent"
@@ -69,45 +81,6 @@
 
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/navBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#20000000"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/status_padding"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="503dp">
-
-        <TextView
-            android:id="@+id/genreTitle"
-            android:layout_width="255dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:onClick="open_genre_list"
-            android:text="Fiction"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_title" />
-
-        <ImageButton
-            android:id="@+id/profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/ic_person_white_24dp" />
-
-        <ImageView
-            android:id="@+id/options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/ic_more_vert_white_24dp" />
-    </RelativeLayout>
 
 
 </RelativeLayout>
